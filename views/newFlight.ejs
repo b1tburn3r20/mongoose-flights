@@ -1,0 +1,61 @@
+<%- include('./partials/header1') %>
+<link rel="stylesheet" href="/stylesheets/new-flight.css">
+<%- include('./partials/header2') %>
+<%- include('./partials/navbar') %>
+
+<h1>Create New Flight</h1>
+<div class="container">
+  <form action="/flights" method="POST">
+    <div class="form-group">
+      <label for="airline">Airline:</label>
+      <select class="form-control" name="airline" id="airline" required>
+        <% airlines.forEach(function(airline) { %>
+          <option value="<%= airline %>"><%= airline %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="airport">Airport:</label>
+      <select class="form-control" name="airport" id="airport" required>
+        <% airports.forEach(function(airport) { %>
+          <option value="<%= airport %>"><%= airport %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="departs">Departure Date:</label>
+      <input type="date" class="form-control" name="departs" id="departs" required>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <select class="form-control" name="destination" id="destination" required>
+        <% airports.forEach(function(airport) { %>
+          <option value="<%= airport %>"><%= airport %></option>
+        <% }); %>
+      </select>
+    </div>       
+    <button class="btn btn-primary" type="submit">Create Flight</button>
+  </form>
+
+
+<script>
+  const airportSelect = document.getElementById('airport');
+  const destinationsSelect = document.getElementById('destinations');
+
+  function updateDestinations() {
+    const selectedAirport = airportSelect.value;
+    const options = Array.from(destinationsSelect.options);
+
+    options.forEach(option => {
+      if (option.value === selectedAirport) {
+        option.hidden = true;
+      } else {
+        option.hidden = false;
+      }
+    });
+  }
+
+  airportSelect.addEventListener('change', updateDestinations);
+  window.addEventListener('load', updateDestinations);
+</script>
+<%- include('./partials/footer') %>

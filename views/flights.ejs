@@ -1,0 +1,39 @@
+<%- include('./partials/header1') %>
+<link rel="stylesheet" href="/stylesheets/flights.css">
+<%- include('./partials/header2') %>
+<%- include('./partials/navbar') %>
+
+
+<div class="container">
+  <h1>List of Flights</h1>
+  <table class="flights-table">
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight No.</th>
+        <th>Departure Date/Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach((flight) => { %>
+        <tr>
+          <td><%= flight.airline %></td>
+          <td><%= flight.airport %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs %></td>
+          <td>
+            <a href="/flights/<%= flight._id %>">Detail</a>
+            <form action="/flights/<%= flight._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this flight?');">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('./partials/footer') %>

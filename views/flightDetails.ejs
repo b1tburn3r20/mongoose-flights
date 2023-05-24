@@ -1,0 +1,49 @@
+<%- include('./partials/header1') %>
+<link rel="stylesheet" href="/stylesheets/flights.css">
+<%- include('./partials/header2') %>
+<%- include('./partials/navbar') %>
+
+<div class="container">
+  <h1>Flight Details</h1>
+  <div class="flight-details">
+    <h3>Airline: <%= flight.airline %></h3>
+    <p>Departing from: <%= flight.airport %></p>
+    <p>Flight No.: <%= flight.flightNo %></p>
+    <p>Departure Date/Time: <%= flight.departs %></p>
+    <h4>Add a New Destination</h4>
+    <form method="POST" action="/flights/<%= flight._id %>/destinations">
+        Airport<select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN">DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+        </select>
+        Arrival<input type="datetime-local" name="arrival">
+        <button type="submit">Add Destination</button>
+    </form> 
+    <% flight.destinations.forEach((destination) => { %>
+      <li>airport: <%= destination.airport %> arrival: <%= destination.arrival.toLocaleDateString() %></li>
+    <% }); %>
+
+    </div>
+  
+  <h4>Tickets:</h4>
+  <form method="POST" action="/flights/<%= flight._id %>/newticket">
+    seat<input type="text" name="seat" pattern="[A-F][1-9]\d?">
+    price<input type="number" name="price">
+    <button type="submit">submit</button>
+  </form>
+  <ul>
+    <% tickets.forEach((ticket) => { %>
+      <form method="POST" action="/flights/<%= flight._id %>/ticket/<%= ticket._id %>?_method=DELETE">
+        <button type="submit">DELETE</button>
+        <li>Seat: <%= ticket.seat %> - Price: <%= ticket.price %></li>
+      </form>  
+    <% }); %>
+  </ul>
+</div>
+
+
+
+<%- include('./partials/footer') %>

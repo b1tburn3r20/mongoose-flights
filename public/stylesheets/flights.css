@@ -1,0 +1,57 @@
+*{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  color: #333333;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+}
+
+table.flights-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+table.flights-table th {
+  background-color: #f5f5f5;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+  color: #333333;
+}
+
+table.flights-table td {
+  padding: 10px;
+  border-top: 1px solid #f5f5f5;
+}
+
+table.flights-table tbody tr:last-child td {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+table.flights-table td:first-child,
+table.flights-table th:first-child {
+  padding-left: 0;
+}
+
+table.flights-table td:last-child,
+table.flights-table th:last-child {
+  padding-right: 0;
+}
+
+@media (max-width: 480px) {
+  table.flights-table {
+    font-size: 0.9rem;
+  }
+}
